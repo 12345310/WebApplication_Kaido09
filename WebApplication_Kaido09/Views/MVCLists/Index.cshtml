@@ -1,0 +1,55 @@
+﻿@model IEnumerable<WebApplication_Kaido09.Models.MVCList>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+@section scripts{
+    <script type="text/javascript" src="../Scripts/own/MvcList.js"></script>
+}
+
+<h2>やることリスト</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.DoneFlg)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TodoName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DeadLine)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Remarks)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.CheckBoxFor(modelItem => item.DoneFlg, new { id = item.ID })
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TodoName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DeadLine)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Remarks)
+            </td>
+            <td>
+                @Html.ActionLink("修正", "Edit", new { id = item.ID }) |
+                @Html.ActionLink("削除", "Delete", new { id = item.ID })
+            </td>
+        </tr>
+    }
+
+</table>
